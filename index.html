@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="This is a NodeWebkit App, that guides through the startup routine of the mi5 showcase.">
+    <meta name="author" content="Dominik Serve">
+
+    <title>Mi5 Startup</title>
+
+    <!-- CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper" class="active">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+			<ul class="sidebar-nav nav" id="spy">
+				<li class="sidebar-brand">
+					<a id="headline" href="#">Menu</a>
+				</li>
+				<li>
+					<a href="#IndustrialPhysics" data-scroll>Industrial Physics</a>
+				</li>
+				<li>
+					<a href="#VMs" data-scroll>VMs</a>
+				</li>
+				<li>
+					<a href="#HMI" data-scroll>HMI</a>
+				</li>
+				<li>
+					<a href="#ConfigData" data-scroll>Config-Data</a>
+				</li>
+				<li>
+					<a href="#ProcessTool" data-scroll>Process Tool</a>
+				</li>
+				<li>
+					<a href="#Help" data-scroll>Help?</a>
+				</li>
+			</ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+			<div class="container-fluid"><button title="Menu" href="#menu-toggle" class="btn btn-primary" id="menu-toggle">Menu <span id="main_icon" class="glyphicon glyphicon-align-justify"></span></button></div>		
+			
+            <div class="container-fluid" data-spy="scroll" data-target="#spy">
+				<!-- Section 1 -->
+				<div class="row" id="VMs">
+						<h2>Automated Startup</h2>
+				</div>
+				<!-- Section 2 -->
+                <div class="row" id="VMs">
+						<h2>Virtual Machines</h2>
+						<div class="btn-group-vertical" role="group" id="VMbuttons">
+						</div>
+						<div>
+						<button class="btn btn-primary" title="Start all default Machines" data-loading-text="Starting..." type="button" id="startAllDefaults">
+							Start all default Machines.
+						</button></div>
+                </div>
+
+				<!-- Section 3 -->				
+                <div class="row" id="HMI">
+						<h2>HMI</h2>
+						<div><button class="btn btn-primary" title="Start Industrial Physics" data-loading-text="Starting..." type="button" id="startHMI">
+							Start HMI!
+						</button></div>
+                </div>
+
+				<!-- Section 4 -->
+
+            </div>
+			<p class="stats"></p>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery/jquery.js"></script>
+	
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+	$("#menu-toggle").click(function(e) {
+        e.preventDefault();
+		console.log('click');
+        $("#wrapper").toggleClass("toggled");
+	});
+    </script>
+	
+	<!-- ProjectScripts -->
+	<script src="./js/bootstrap/scrollspy.js"></script>
+	<script src="./js/app.js"></script>
+
+
+</body>
+
+</html>

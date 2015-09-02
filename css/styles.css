@@ -1,0 +1,20 @@
+/**
+ * Author: Dominik Serve
+ *
+ */
+ 
+ body {
+	position: relative;
+ }
+
+
+#menu-toggle {
+	display: inline;
+	margin-bottom: 1em;
+}
+
+@media(min-width:768px) {
+	#menu-toggle {
+		display: none;
+	}
+}

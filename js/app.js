@@ -37,27 +37,11 @@ $(function(){
 
 
 /**
- * Start Industrial Physics
- ****************************
- */
- 	//Start Industrial Physics Button
-	var IndPhys = require(process.cwd()+"/js/modules/industrialPhysics");
-	$("body").on('click', "#startIndPhys", function(e) {
-		e.preventDefault();
-		//var $btn = $(this).button('loading');
-		IndPhys.startIndPhys(displayState);
-	});
-
-
-
-
-/**
  * Manage Virtual Machines
  ****************************
  */
-	var VMs = require(process.cwd()+"/js/modules/VMs");
+	var VMs = require(process.cwd()+"/js/modules/VMs"); // NW.js does not support normal require
 
-	// List VMs
 	VMs.listVMs(function(data){
 		VMs.interpretData(data, function(item){
 			// Create Buttons
@@ -109,7 +93,31 @@ $(function(){
 		VMs.startDefaults(displayState, function(out, UUID){});
 	});
 	
+	
+/**
+ * HMI
+ ****************************
+ */
+	var HMI = require(process.cwd()+"/js/modules/HMI");
+	$("body").on('click', "#startHMI", function(e) {
+		e.preventDefault();
+		HMI.startHMI(displayState);
+	});
+	
+	$("body").on('click', "#bgDebugResetSkillsXTS", function(e) {
+	e.preventDefault();
+	HMI.resetXTS(displayState);
+	});
+	
  
 });
+
+
+
+
+
+
+
+
 
 

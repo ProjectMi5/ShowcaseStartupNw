@@ -5,6 +5,8 @@
  * @date 2015-07-09
  */
 $(function(){
+	var config = require(process.cwd() + "/config");
+	
 // Display state on a button
 	function displayState(ID, state){
 		var $btn = $('#'+ID);

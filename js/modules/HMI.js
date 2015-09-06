@@ -5,22 +5,33 @@
  * @date 2015-09-02
  */
 
-var HMIdefaults = {
-	path: "C:\\Users\\ITQ\\Documents\\HMI"
-};
- 
+
 exports.startHMI = function(display) {
 	display('startHMI', 'loading');
 	var exec = require('child_process').exec;
-	var cmd = "start node app.js -server=briefcase​";
-	var child = exec(cmd, {cwd: HMIdefaults.path}, function(error, stdout, stderr){
-		display('startHMI', 'reset');		
-		if(!error){
-			display('startHMI', 'running');
-		} else {
-			display('startHMI', 'error');
-		}
+	var cmd = "node app.js -server=briefcase";
+	var args = [];
+	var child = exec(cmd, {cwd: HMIdefaults.path});
+	child.stdout.on('data', function(data){
+		console.log('stdout: ' + data);
 	});
+	child.stderr.on('data', function(data){
+		console.log('stderr: ' + data);
+	});
+	child.on('close', function(data){
+		console.log('closing code: ' + data);
+	});
+	
+	var mongodb = '"C:\\Program Files\\MongoDB\\Server\\3.0\\bin\\mongod.exe" --dbpath C:\\Users\\ITQ\\Documents\\HMI-Cloud\\mongodb';
+	
+	console.log('starting mongoDB');
+	exec(mongodb, function(error, stdout, stderr){
+	  console.log('ChildProcess'.red, 'stdout:', stdout, 'stderr:', stderr);
+	  if (error !== null) {
+		console.log('ChildProcess'.red, 'exec error: ' + error);
+	  }
+	});
+	
 }
 
 exports.resetXTS = function(display) {

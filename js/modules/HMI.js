@@ -4,22 +4,31 @@
  * @author Dominik Serve
  * @date 2015-09-02
  */
+ 
+ var HMIdefaults = global.config.HMI;
 
 
-exports.startHMI = function(display) {
-	display('startHMI', 'loading');
+exports.startHMI = function() {
+	var $btn = global.$('#startHMI');
+	$btn.button('loading');
 	var exec = require('child_process').exec;
 	var cmd = "node app.js -server=briefcase";
 	var args = [];
 	var child = exec(cmd, {cwd: HMIdefaults.path});
 	child.stdout.on('data', function(data){
 		console.log('stdout: ' + data);
+		global.$('#HMIconsole').append('<p>stdout: '+data+'</p>');
 	});
 	child.stderr.on('data', function(data){
 		console.log('stderr: ' + data);
+		global.$('#HMIconsole').append('<p>stderr: '+data+'</p>');
 	});
 	child.on('close', function(data){
 		console.log('closing code: ' + data);
+		global.$('#HMIconsole').append('<p>closing code: '+data+'</p>');
+		$btn.button('reset');
+		$btn.attr('class', 'btn btn-success');
+		$btn.attr('title', 'running');
 	});
 	
 	var mongodb = '"C:\\Program Files\\MongoDB\\Server\\3.0\\bin\\mongod.exe" --dbpath C:\\Users\\ITQ\\Documents\\HMI-Cloud\\mongodb';
@@ -34,7 +43,7 @@ exports.startHMI = function(display) {
 	
 }
 
-exports.resetXTS = function(display) {
+exports.resetXTS = function() {
 	var opc = require(HMIdefaults.path + '/models/simpleOpcua').server(CONFIG.OPCUAXTS);
     opc.initialize(function(err) {
       if (err) {

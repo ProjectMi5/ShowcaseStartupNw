@@ -1,13 +1,14 @@
-/**
- * Mi5 StartUp App Functionality
- * 
- * @author Dominik Serve
- * @date 2015-07-09
- */
-$(function(){
-	var config = require(process.cwd() + "/config");
+function init(){
+	global.config = require("./../config").config;
 	
-// Display state on a button
+	global.$(global.window.document).ready(function(){
+		var exp = require("./../js/modules/exp.js"); //note: In nw require always starts at index.html
+		global.$("body").on('click', "#startTest", function(e) {
+			e.preventDefault();
+			exp.doSomething();
+		});
+		
+	// Display state on a button
 	function displayState(ID, state){
 		var $btn = $('#'+ID);
 		switch(state) {
@@ -38,10 +39,10 @@ $(function(){
 
 
 
-/**
- * Manage Virtual Machines
- ****************************
- */
+	/**
+	 * Manage Virtual Machines
+	 ****************************
+	 */
 	var VMs = require(process.cwd()+"/js/modules/VMs"); // NW.js does not support normal require
 
 	VMs.listVMs(function(data){
@@ -96,10 +97,10 @@ $(function(){
 	});
 	
 	
-/**
- * HMI
- ****************************
- */
+	/**
+	 * HMI
+	 ****************************
+	 */
 	var HMI = require(process.cwd()+"/js/modules/HMI");
 	$("body").on('click', "#startHMI", function(e) {
 		e.preventDefault();
@@ -110,16 +111,5 @@ $(function(){
 	e.preventDefault();
 	HMI.resetXTS(displayState);
 	});
-	
- 
-});
-
-
-
-
-
-
-
-
-
-
+	});
+}

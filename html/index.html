@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-
-    <meta charset="utf-8">
+    <title>Mi5 Startup</title>
+	
+	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="This is a NodeWebkit App, that guides through the startup routine of the mi5 showcase.">
     <meta name="author" content="Dominik Serve">
-
-    <title>Mi5 Startup</title>
-
-    <!-- CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/simple-sidebar.css" rel="stylesheet">
-	<link href="css/styles.css" rel="stylesheet">
-
+	
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/simple-sidebar.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/styles.css"/>
+	
+	<script type="text/javascript" src="../js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap/scrollspy.js"></script>
+	<script type="text/javascript" src="../js/main.js"></script>
+	<script type="text/javascript">
+		global.window = window;
+		global.$ = $;
+		global.gui = require('nw.gui');
+		init();
+	</script>
+	
 </head>
-
 <body>
-
     <div id="wrapper" class="active">
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
@@ -56,6 +63,9 @@
 				<!-- Section 1 -->
 				<div class="row" id="VMs">
 						<h2>Automated Startup</h2>
+						<button class="btn btn-primary" title="Start test." data-loading-text="Starting..." type="button" id="startTest">
+							Start some test.
+						</button>						
 				</div>
 				<!-- Section 2 -->
                 <div class="row" id="VMs">
@@ -90,12 +100,6 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="js/jquery/jquery.js"></script>
-	
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-
     <!-- Menu Toggle Script -->
     <script>
 	$("#menu-toggle").click(function(e) {
@@ -105,11 +109,5 @@
 	});
     </script>
 	
-	<!-- ProjectScripts -->
-	<script src="./js/bootstrap/scrollspy.js"></script>
-	<script src="./js/app.js"></script>
-
-
 </body>
-
 </html>

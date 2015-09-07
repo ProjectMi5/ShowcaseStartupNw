@@ -5,72 +5,26 @@
  * @date 2015-07-09
  */
 
+var VMdefaults = global.config.VMdefaults,
+	vboxmanage = global.config.vboxmanage;
 
-var VMdefaults = [
- {
-	description: "OPC UA Server",
-	vmname: "OPC UA Server",
-	UUID: "fe49fe48-f34b-4136-9930-9b068c6d676c",
-	vmsnapshot: "Parameter Neu",
-	snapshotUUID: "2b66eb04-bb00-4263-9043-5b8ffaf3801a"
- },
- {
-	description: "Modulx",
-	vmname: 'Modulx',
-	UUID: "69b40734-3ce7-4b3e-8cb1-9fc067aa4809",
-	vmsnapshot: "Lizenziert & Status der Skills",
-	snapshotUUID: "6cbb3681-4453-4c20-b577-bca03d1b1b20"
- },
- {
-	description: "Recipe Tool",
-	vmname: 'Recipe Tool',
-	UUID: "051406f5-29d3-47ca-9aa6-990734c722f9",
-	vmsnapshot: "Summernight",
-	snapshotUUID: "3bd3b61a-b979-4df3-aa30-673879125429"
-  },
-  {
-	description: "Domi's VirtualBox Laptop 1",
-	vmname: "lubuntu",
-	UUID: "80893b41-d5af-4e28-a84d-0a2eef37e8ce",
-	vmsnapshot: "Sicherungspunkt2",
-	snapshotUUID: "e861f534-6254-4f28-9aa4-22708e353d2d"
- },
- {
-	description: "Domi's VirtualBox Laptop 2",
-	vmname: 'lubuntu Klon',
-	UUID: "cbee8585-36a9-478d-a3e0-12c9b705251d",
-	vmsnapshot: "Sicherungspunkt2",
-	snapshotUUID: "1bb8e92b-1afa-4a6e-b8c6-9c5c84f3a005"
- },
- {
-	description: "Domi's VirtualBox3",
-	vmname: 'lubuntu',
-	UUID: "cfd117bd-c0ff-4c19-b06c-7ed0370a0def",
-	vmsnapshot: "Sicherung2",
-	snapshotUUID: "0f73b643-dc61-4a1b-8dbc-79933797d151"
- }
- ];
 
-var vboxmanage = {
-	path: "C:\\Program Files\\Oracle\\VirtualBox"
-};
-
-/**
- * Temporary: Long list of VMs
- * 
- * @param callback
- */
-exports.list = function() {
-	var exec = require('child_process').exec;
-	var cmd = 'VBoxManage list vms --long';
-	exec(cmd, {cwd: vboxmanage.path}, function (error, stdout, stderr) {
-		if (!error) {
-			console.log(stdout);
-		} else {
-			console.log(stderr);
-		}
-	});
-}
+// /**
+ // * Temporary: Long list of VMs
+ // * 
+ // * @param callback
+ // */
+// exports.list = function() {
+	// var exec = require('child_process').exec;
+	// var cmd = 'VBoxManage list vms --long';
+	// exec(cmd, {cwd: vboxmanage.path}, function (error, stdout, stderr) {
+		// if (!error) {
+			// console.log(stdout);
+		// } else {
+			// console.log(stderr);
+		// }
+	// });
+// }
 
 
 

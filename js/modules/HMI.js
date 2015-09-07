@@ -5,7 +5,8 @@
  * @date 2015-09-02
  */
  
- var HMIdefaults = global.config.HMI;
+var HMIdefaults = global.config.HMI;
+var mongodb = global.config.mongodb;
 
 
 exports.startHMI = function() {
@@ -31,10 +32,9 @@ exports.startHMI = function() {
 		$btn.attr('title', 'running');
 	});
 	
-	var mongodb = '"C:\\Program Files\\MongoDB\\Server\\3.0\\bin\\mongod.exe" --dbpath C:\\Users\\ITQ\\Documents\\HMI-Cloud\\mongodb';
-	
+	var cmdMongo = mongodb.exeFilePath + " --dbpath " + mongodb.dbPath;
 	console.log('starting mongoDB');
-	exec(mongodb, function(error, stdout, stderr){
+	exec(cmdMongo, function(error, stdout, stderr){
 	  console.log('ChildProcess'.red, 'stdout:', stdout, 'stderr:', stderr);
 	  if (error !== null) {
 		console.log('ChildProcess'.red, 'exec error: ' + error);

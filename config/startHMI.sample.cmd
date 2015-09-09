@@ -1,0 +1,1 @@
+start node "C:\\path\\to\\app.js" -server=briefcase -startMongoDB

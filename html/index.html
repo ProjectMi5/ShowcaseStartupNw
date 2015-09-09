@@ -65,7 +65,9 @@
 						<h2>Automated Startup</h2>
 						<button class="btn btn-primary" title="Start test." data-loading-text="Starting..." type="button" id="startTest">
 							Start some test.
-						</button>						
+						</button>
+						<div class="console" id="console">
+						</div>
 				</div>
 				<!-- Section 2 -->
                 <div class="row" id="VMs">
@@ -81,16 +83,9 @@
 				<!-- Section 3 -->				
                 <div class="row" id="HMI">
 						<h2>HMI</h2>
-						<div><button class="btn btn-primary" title="Start the HMI." data-loading-text="Starting..." type="button" id="startHMI">
+						<div><button class="btn btn-primary" title="Start the HMI." data-loading-text="Running..." type="button" id="startHMI">
 							Start the HMI!
 						</button></div>
-						<div><button class="btn" title="Reset XTS." data-loading-text="Reset running..." type="button" id="bgDebugResetSkillsXTS">
-							Reset XTS
-						</button></div>
-						<div class="console" id="HMIconsole">
-							<p>text block content goes here</p>
-
-						</div>
                 </div>
 				
 
@@ -111,6 +106,10 @@
 		console.log('click');
         $("#wrapper").toggleClass("toggled");
 	});
+	window.setInterval(function() {
+		var elem = document.getElementById('console');
+		elem.scrollTop = elem.scrollHeight;
+	}, 5000);
     </script>
 	
 </body>

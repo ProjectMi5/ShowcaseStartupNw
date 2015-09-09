@@ -1,63 +1,76 @@
 /**
- * Starting the HMI
+ * startHMI_externally
  * 
  * @author Dominik Serve
- * @date 2015-09-02
+ * @author Kilian Messmer
+ * @date 2015-09-08
+ * 
+ * Note: This works only, if all paths in the executed file are declared absolutely.
+ * Otherwise use startHMI_internally.
  */
- 
-var HMIdefaults = global.config.HMI;
-var mongodb = global.config.mongodb;
-
-
-exports.startHMI = function() {
+exports.startHMI = function(){
 	var $btn = global.$('#startHMI');
 	$btn.button('loading');
-	var exec = require('child_process').exec;
-	var cmd = "node app.js -server=briefcase";
-	var args = [];
-	var child = exec(cmd, {cwd: HMIdefaults.path});
-	child.stdout.on('data', function(data){
-		console.log('stdout: ' + data);
-		global.$('#HMIconsole').append('<p>stdout: '+data+'</p>');
-	});
-	child.stderr.on('data', function(data){
-		console.log('stderr: ' + data);
-		global.$('#HMIconsole').append('<p>stderr: '+data+'</p>');
-	});
-	child.on('close', function(data){
-		console.log('closing code: ' + data);
-		global.$('#HMIconsole').append('<p>closing code: '+data+'</p>');
+	$btn.attr('class', 'btn btn-success');
+	
+	var exec = require('child_process').execFile;
+
+	console.log("Starting HMI");
+	global.$('#console').append('<p>Starting HMI <br>&#8594; see in new window</p>');
+	
+	var exec = require('child_process').execFile;
+	exec(process.cwd() + '\\config\\startHMI.cmd', function(error, stdout, stderr) {
 		$btn.button('reset');
-		$btn.attr('class', 'btn btn-success');
-		$btn.attr('title', 'running');
+		global.global.prnt("stdout", stdout);
+		global.prnt('std', 'HMI closed');
+				
+		if(!error){
+			$btn.attr('class', 'btn btn-primary');
+			$btn.attr('title', 'closed');
+		} else {
+			global.global.prnt("stderr", stderr);
+			$btn.attr('class', 'btn btn-warning');
+			$btn.attr('title', 'error');
+		}
+	});
+};
+
+/**
+ * startHMI_internally
+ * 
+ * @author Dominik Serve
+ * @author Kilian Messmer
+ * @date 2015-09-08
+ * 
+ * Note: This works fine, even if the paths in the executed File are not declared absolutely.
+ * But you cannot reboot or close StartUp-Program. Otherwise the child process will be closed,
+ * too.
+ */
+
+exports.startHMI_internally = function(){
+	var $btn = global.$('#startHMI');
+	//$btn.button('loading');
+	$btn.attr('class', 'btn btn-success');
+	
+	var exec = require('child_process').execFile;
+
+	console.log("Starting HMI");
+	global.$('#console').append('<p>Starting HMI</p>');
+	
+	var spawn = require('child_process').spawn;
+	var child = spawn('node', ['simpleOPCUA.js'], {cwd: "C:\\Users\\Dominik\\Dropbox\\Mi5\\opcua-server"});
+	child.stdout.on('data', function (data) {
+		console.log('stdout: ' + data);
+		global.$('#console').append('<p class="stdout">stdout: '+data+'</p>');
+	});
+
+	child.stderr.on('data', function (data) {
+		console.log('stderr: ' + data);
+		global.$('#console').append('<p class="error">stderr: '+data+'</p>');
 	});
 	
-	var cmdMongo = mongodb.exeFilePath + " --dbpath " + mongodb.dbPath;
-	console.log('starting mongoDB');
-	exec(cmdMongo, function(error, stdout, stderr){
-	  console.log('ChildProcess'.red, 'stdout:', stdout, 'stderr:', stderr);
-	  if (error !== null) {
-		console.log('ChildProcess'.red, 'exec error: ' + error);
-	  }
+	child.on('close', function(data){
+		console.log('Closing code: ' + data);
+		global.$('#console').append('<p class="error">Closed HMI with code: '+data+'</p>');
 	});
-	
-}
-
-exports.resetXTS = function() {
-	var opc = require(HMIdefaults.path + '/models/simpleOpcua').server(CONFIG.OPCUAXTS);
-    opc.initialize(function(err) {
-      if (err) {
-        console.log(err);
-        return 0;
-      }
-
-      var writethis = {
-        XTS_ResetSkills : true
-      };
-
-      opc.mi5WriteObject('MI5.', writethis, Mi5DebugMapping, function(err) {
-        console.log(preLog(), 'XTS - Reset XTS - written true');
-        opc.disconnect();
-      }); // end opc.Mi5WriteObject
-    }); // end opc.initialize
-}
+};

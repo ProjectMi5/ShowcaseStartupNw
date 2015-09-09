@@ -21,7 +21,15 @@
 
 .console {
 	overflow: auto;
-	height: 100px;
+	height: 250px;
 	background-color: black;
 	color: white;
+}
+
+.error {
+	color: red;
+}
+
+.stdout {
+	color: green;
 }

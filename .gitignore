@@ -1,2 +1,5 @@
 node_modules
-config.js
+config/config.js
+config/startHMI.cmd
+config/startHMI-copy.cmd
+js/modules/HMI-old.js

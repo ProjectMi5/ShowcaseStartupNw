@@ -10,7 +10,11 @@
 		"width": 800,
 		"height": 500
 	  },
+	  "repository" :
+	  { "type" : "git",
+		"url" : "https://github.com/ProjectMi5/ShowcaseStartupNw"
+	  },
 	  "dependencies": {
-		
+		"async": "*"
 	  }
 	}

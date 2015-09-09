@@ -139,7 +139,7 @@ function checkDefault(UUID, callback) {
 
 
 /**
- * Start one VM
+ * Start one VM without checking for defaults
  * 
  * @param UUID
  * @param callback
@@ -203,22 +203,31 @@ exports.startDefaults = function(callback){
 			return entry.substring(entry.lastIndexOf('{')+1,entry.lastIndexOf('}'));
 		})
 		
-		VMdefaults.forEach(function(item){
-			//make sure that default machine really exists
-			if(ids.indexOf(item.UUID) > -1){
-				exports.checkState(item.UUID, function(state){
-					if((state=='poweroff')|(state=='saved')){
-						startVM(item.UUID, function(out){
-							callback(out, item.UUID);
-						});
-					} else {
-						callback(false, item.UUID);
-					}
-				})
-			} else {
-				console.log(item.vmname+" does not exist on this machine.");
+		/* Note: Starting two VMs at once works fine. But starting more at once can
+		 * crash the PC. That is why we need to start them one after the other.
+		 */
+		global.async.eachSeries(VMdefaults,	 // 1st param is an array of items
+			function(item, cb){				 //asynchronous function controlled by cb
+				if(ids.indexOf(item.UUID) > -1){
+					exports.checkState(item.UUID, function(state){
+						if((state=='poweroff')|(state=='saved')){
+							startVM(item.UUID, function(out){
+								callback(out, item.UUID);
+								cb();
+							});
+						} else {
+							callback(false, item.UUID);
+							cb();
+						}
+					});
+				} else {
+					console.log(item.vmname+" does not exist on this machine.");
+					cb();
+				}				
+			},
+			function(err){	//nothing to do after all tasks are done
 			}
-		});
+		);
 	});
 }
 

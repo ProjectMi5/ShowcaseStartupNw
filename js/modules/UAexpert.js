@@ -14,7 +14,7 @@ exports.startUAexpert = function(callback){
 	console.log("Starting UA Expert");
 	
 	var exec = require('child_process').execFile;
-	exec('"'+process.cwd() + '\\config\\startUAexpert.cmd"', function(error, stdout, stderr) {
+	exec(process.cwd() + '\\config\\startUAexpert.cmd', function(error, stdout, stderr) {
 		$btn.button('reset');
 		if(!error){
 			console.log("stdout: " + stdout);

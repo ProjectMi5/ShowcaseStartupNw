@@ -143,7 +143,7 @@ function init(){
 					$btn.attr('class', 'btn btn-success');
 					$btn.attr('title', 'running');
 				} else {
-					console.log('An error occurred '+error);
+					console.log('An error occurred '+err);
 					$btn.attr('class', 'btn btn-warning');
 					$btn.attr('title', 'error');
 				}

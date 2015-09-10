@@ -15,7 +15,7 @@ exports.startIndPhys = function(callback){
 	console.log("Starting Industrial Physics");
 	
 	var exec = require('child_process').execFile;
-	exec('"'+process.cwd() + '\\config\\startIndustrialPhysics.cmd"', function(error, stdout, stderr) {
+	exec(process.cwd() + '\\config\\startIndustrialPhysics.cmd', function(error, stdout, stderr) {
 		$btn.button('reset');
 		if(!error){
 			console.log("stdout: " + stdout);

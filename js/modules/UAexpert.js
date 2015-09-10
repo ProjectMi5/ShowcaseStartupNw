@@ -1,24 +1,24 @@
 /**
- * startIndustrialPhysics_externally
+ * startUAexpert_externally
  * 
  * @author Dominik Serve
  * @date 2015-09-10
  * 
  */
-exports.startIndPhys = function(){
-	var $btn = global.$('#startIndPhys');
+exports.startUAexpert = function(){
+	var $btn = global.$('#startUAexpert');
 	$btn.button('loading');
 	$btn.attr('class', 'btn btn-success');
 	
 	var exec = require('child_process').execFile;
 
-	console.log("Starting Industrial Physics");
+	console.log("Starting UA Expert");
 	
 	var exec = require('child_process').execFile;
-	exec(process.cwd() + '\\config\\startIndustrialPhysics.cmd', function(error, stdout, stderr) {
+	exec(process.cwd() + '\\config\\startUAexpert.cmd', function(error, stdout, stderr) {
 		$btn.button('reset');
 		console.log("stdout: " + stdout);
-		console.log('Industrial Physics closed');
+		console.log('UA Expert closed');
 				
 		if(!error){
 			$btn.attr('class', 'btn btn-primary');

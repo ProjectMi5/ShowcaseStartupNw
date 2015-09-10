@@ -66,8 +66,7 @@
 						<button class="btn btn-primary" title="Start test." data-loading-text="Starting..." type="button" id="startTest">
 							Start some test.
 						</button>
-						<div class="console" id="console">
-						</div>
+						<!-- <div class="console" id="console"></div> -->
 				</div>
 				<!-- Section 2 -->
                 <div class="row" id="VMs">
@@ -85,11 +84,40 @@
 						<h2>HMI</h2>
 						<div><button class="btn btn-primary" title="Start the HMI." data-loading-text="Running..." type="button" id="startHMI">
 							Start the HMI!
+						</button>
+						<button class="btn btn-default" title="Start the Browser." data-loading-text="Running..." type="button" id="startBrowser">
+							View HMI in Browser!
+						</button></div>
+                </div>
+				
+				
+				<!-- Section 4 -->				
+                <div class="row" id="UAexpert">
+						<h2>UA Expert</h2>
+						<div><button class="btn btn-primary" title="Start UA Expert." data-loading-text="Running..." type="button" id="startUAexpert">
+							Start UA Expert!
 						</button></div>
                 </div>
 				
 
-				<!-- Section 4 -->
+				<!-- Section 5 -->				
+                <div class="row" id="IndPhys">
+						<h2>Industrial Physics</h2>
+						<div><button class="btn btn-primary" title="Start Industrial Physics." data-loading-text="Running..." type="button" id="startIndPhys">
+							Start Industrial Physics!
+						</button></div>
+                </div>
+				
+				<!-- Section 6 -->				
+                <div class="row" id="ProcessTool">
+						<h2>Process Tool</h2>
+						<div class="checkbox">
+							<label><input type="checkbox" value="false" id="init">Starting with initialization?</label>
+						</div>
+						<div><button class="btn btn-primary" title="Start Industrial Physics." data-loading-text="Running..." type="button" id="startProcessTool">
+							Start Process Tool!
+						</button></div>
+                </div>
 
             </div>
 			<p class="stats"></p>
@@ -106,10 +134,6 @@
 		console.log('click');
         $("#wrapper").toggleClass("toggled");
 	});
-	window.setInterval(function() {
-		var elem = document.getElementById('console');
-		elem.scrollTop = elem.scrollHeight;
-	}, 5000);
     </script>
 	
 </body>

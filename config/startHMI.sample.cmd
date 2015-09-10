@@ -1,1 +1,2 @@
-start node "C:\\path\\to\\app.js" -server=briefcase -startMongoDB
+cd "C:\\path\\to\\"
+start "HMI" node "app.js" -server=briefcase -startMongoDB

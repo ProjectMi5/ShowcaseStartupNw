@@ -5,8 +5,6 @@
  * @author Kilian Messmer
  * @date 2015-09-08
  * 
- * Note: This works only, if all paths in the executed file are declared absolutely.
- * Otherwise use startHMI_internally.
  */
 exports.startHMI = function(){
 	var $btn = global.$('#startHMI');
@@ -16,19 +14,44 @@ exports.startHMI = function(){
 	var exec = require('child_process').execFile;
 
 	console.log("Starting HMI");
-	global.$('#console').append('<p>Starting HMI <br>&#8594; see in new window</p>');
 	
-	var exec = require('child_process').execFile;
-	exec(process.cwd() + '\\config\\startHMI.cmd', function(error, stdout, stderr) {
+	var exec = require('child_process').exec;
+	var child = exec(process.cwd() + '\\config\\startHMI.cmd', function(error, stdout, stderr) {
 		$btn.button('reset');
-		global.global.prnt("stdout", stdout);
-		global.prnt('std', 'HMI closed');
+		console.log("stdout: " + stdout);
+		console.log('HMI closed');
 				
 		if(!error){
 			$btn.attr('class', 'btn btn-primary');
 			$btn.attr('title', 'closed');
 		} else {
-			global.global.prnt("stderr", stderr);
+			console.log("stderr: "+stderr);
+			$btn.attr('class', 'btn btn-warning');
+			$btn.attr('title', 'error');
+		}
+	});
+};
+
+exports.startBrowser = function(){
+	var $btn = global.$('#startBrowser');
+	$btn.button('loading');
+	$btn.attr('class', 'btn btn-success');
+	
+	var exec = require('child_process').execFile;
+
+	console.log("Starting HMI in Browser");
+	
+	var exec = require('child_process').exec;
+	var child = exec(process.cwd() + '\\config\\startBrowser.cmd', function(error, stdout, stderr) {
+		$btn.button('reset');
+		console.log("stdout: " + stdout);
+		console.log('Browser closed');
+				
+		if(!error){
+			$btn.attr('class', 'btn btn-default');
+			$btn.attr('title', 'closed');
+		} else {
+			console.log("stderr: "+stderr);
 			$btn.attr('class', 'btn btn-warning');
 			$btn.attr('title', 'error');
 		}

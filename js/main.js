@@ -51,6 +51,40 @@ function init(){
 			e.preventDefault();
 			HMI.startHMI();
 		});
+		$("body").on('click', "#startBrowser", function(e) {
+			e.preventDefault();
+			HMI.startBrowser();
+		});
+		
+		/**
+		 * UA Expert
+		 ********************************************************
+		 */
+		var UAexpert = require(process.cwd()+"/js/modules/UAexpert");
+		$("body").on('click', "#startUAexpert", function(e) {
+			e.preventDefault();
+			UAexpert.startUAexpert();
+		});
+		
+		/**
+		 * Industrial Physics
+		 ********************************************************
+		 */
+		var indPhys = require(process.cwd()+"/js/modules/industrialPhysics");
+		$("body").on('click', "#startIndPhys", function(e) {
+			e.preventDefault();
+			indPhys.startIndPhys();
+		});
+		
+		/**
+		 * ProcessTool
+		 ********************************************************
+		 */
+		var processTool = require(process.cwd()+"/js/modules/processTool");
+		$("body").on('click', "#startProcessTool", function(e) {
+			e.preventDefault();
+			processTool.startProcessTool();
+		});
 		
 		
 		

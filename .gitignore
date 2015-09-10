@@ -2,4 +2,8 @@ node_modules
 config/config.js
 config/startHMI.cmd
 config/startHMI-copy.cmd
+config/startBrowser.cmd
+config/startIndustrialPhysics.cmd
+config/startProcessTool.cmd
+config/startUAexpert.cmd
 js/modules/HMI-old.js

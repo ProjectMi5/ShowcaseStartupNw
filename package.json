@@ -8,7 +8,8 @@
 	  "window": {
 		"toolbar": true,
 		"width": 800,
-		"height": 500
+		"height": 700,
+		"always-on-top": true
 	  },
 	  "repository" :
 	  { "type" : "git",

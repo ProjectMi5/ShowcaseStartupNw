@@ -27,7 +27,7 @@ function startTool(){
 	console.log("Starting Process Tool");
 	
 	var exec = require('child_process').execFile;
-	exec(process.cwd() + '\\config\\startProcessTool.cmd', function(error, stdout, stderr) {
+	exec('"'+process.cwd() + '\\config\\startProcessTool.cmd"', function(error, stdout, stderr) {
 		$btn.button('reset');
 		console.log("stdout: " + stdout);
 		console.log('Process Tool closed');

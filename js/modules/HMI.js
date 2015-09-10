@@ -16,7 +16,7 @@ exports.startHMI = function(){
 	console.log("Starting HMI");
 	
 	var exec = require('child_process').exec;
-	var child = exec(process.cwd() + '\\config\\startHMI.cmd', function(error, stdout, stderr) {
+	var child = exec('"'+process.cwd() + '\\config\\startHMI.cmd', function(error, stdout, stderr) {
 		$btn.button('reset');
 		console.log("stdout: " + stdout);
 		console.log('HMI closed');
@@ -39,7 +39,7 @@ exports.startBrowser = function(callback){
 	console.log("Starting HMI in Browser");
 	
 	var exec = require('child_process').exec;
-	var child = exec(process.cwd() + '\\config\\startBrowser.cmd', function(error, stdout, stderr) {
+	var child = exec('"'+process.cwd() + '\\config\\startBrowser.cmd', function(error, stdout, stderr) {
 		$btn.button('reset');
 				
 		if(!error){

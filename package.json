@@ -9,7 +9,7 @@
 		"toolbar": true,
 		"width": 800,
 		"height": 700,
-		"always-on-top": true
+		"always-on-top": false
 	  },
 	  "repository" :
 	  { "type" : "git",

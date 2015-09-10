@@ -5,7 +5,7 @@
  * @date 2015-09-10
  * 
  */
-exports.startIndPhys = function(){
+exports.startIndPhys = function(callback){
 	var $btn = global.$('#startIndPhys');
 	$btn.button('loading');
 	$btn.attr('class', 'btn btn-success');
@@ -17,16 +17,15 @@ exports.startIndPhys = function(){
 	var exec = require('child_process').execFile;
 	exec(process.cwd() + '\\config\\startIndustrialPhysics.cmd', function(error, stdout, stderr) {
 		$btn.button('reset');
-		console.log("stdout: " + stdout);
-		console.log('Industrial Physics closed');
-				
 		if(!error){
-			$btn.attr('class', 'btn btn-primary');
-			$btn.attr('title', 'closed');
+			console.log("stdout: " + stdout);
+			$btn.attr('class', 'btn btn-success');
+			$btn.attr('title', 'running');
 		} else {
 			console.log("stderr: "+stderr);
 			$btn.attr('class', 'btn btn-warning');
 			$btn.attr('title', 'error');
 		}
+		callback(error);
 	});
 };

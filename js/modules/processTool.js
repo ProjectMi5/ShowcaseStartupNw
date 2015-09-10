@@ -6,6 +6,18 @@
  * 
  */
 exports.startProcessTool = function(){
+	var bool = global.$('#ProcessToolWithInit').prop('checked');
+	setINIT(bool, function(err){
+		if(err){
+			console.log(err);
+			return;
+		} else {
+			startTool();
+		}
+	});
+};
+
+function startTool(){
 	var $btn = global.$('#startProcessTool');
 	$btn.button('loading');
 	$btn.attr('class', 'btn btn-success');
@@ -28,5 +40,32 @@ exports.startProcessTool = function(){
 			$btn.attr('class', 'btn btn-warning');
 			$btn.attr('title', 'error');
 		}
+	});	
+}
+
+function setINIT(bool, callback){
+	fs = require('fs');
+	var file = global.config.processTool.initPath;
+	
+	fs.readFile(file, function (err, data) {
+		if (err){
+			callback(err);
+			return;
+		}
+		var result;
+		if(bool){
+			result = data.toString().replace('init,0', 'init,1');
+		} else {
+			result = data.toString().replace('init,1', 'init,0');
+		}
+		console.log("Replacing the init parameter in Mi5Config.ini!")
+		fs.writeFile(file, result, function(err) {
+			if(err) {
+				callback(err);
+				return;
+			}
+			console.log("The file was saved!");
+			callback(null);
+		}); 				
 	});
-};
+}

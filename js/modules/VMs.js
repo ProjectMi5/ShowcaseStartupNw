@@ -147,18 +147,20 @@ function checkDefault(UUID, callback) {
 function startVMsimple(UUID, callback) {
 	var exec = require('child_process').exec;
 	var cmd = 'VBoxManage startvm ' + UUID;
+	console.log('Starting VM '+UUID);
 	exec(cmd, {cwd: vboxmanage.path}, function (error, stdout, stderr) {
 		var $btn = global.$('#'+UUID);
 		$btn.button('reset');
 		if(!error){
+			console.log('VM '+UUID+' started.');
 			$btn.attr('class', 'btn btn-success');
 			$btn.attr('title', 'running');
-			callback(true);
+			callback(null);
 		} else {
 			console.log(stderr);
 			$btn.attr('class', 'btn btn-warning');
 			$btn.attr('title', 'error');
-			callback(false);
+			callback(error);
 		}
 	});
 }
@@ -198,6 +200,8 @@ exports.startVM = function(vmUUID, callback){
  * @param callback
  */
 exports.startDefaults = function(callback){
+	var $btn = global.$('#startAllDefaults');
+	$btn.button('running');
 	listVMs(function(result){
 		var ids = result.map(function(entry){
 			return entry.substring(entry.lastIndexOf('{')+1,entry.lastIndexOf('}'));
@@ -207,25 +211,33 @@ exports.startDefaults = function(callback){
 		 * crash the PC. That is why we need to start them one after the other.
 		 */
 		global.async.eachSeries(VMdefaults,	 // 1st param is an array of items
-			function(item, cb){				 //asynchronous function controlled by cb
+			function(item, check){				 //asynchronous function controlled by check
 				if(ids.indexOf(item.UUID) > -1){
 					exports.checkState(item.UUID, function(state){
 						if((state=='poweroff')|(state=='saved')){
-							startVM(item.UUID, function(out){
-								callback(out, item.UUID);
-								cb();
+							startVM(item.UUID, function(result){
+								check(result);
 							});
 						} else {
-							callback(false, item.UUID);
-							cb();
+							console.log(item.vmname+" is already running.");
+							check(null);
 						}
 					});
 				} else {
 					console.log(item.vmname+" does not exist on this machine.");
-					cb();
+					check(null);
 				}				
 			},
-			function(err){	//nothing to do after all tasks are done
+			function(err){
+				$btn.button('reset');
+				if(!err){
+					$btn.attr('class', 'btn btn-success');
+					$btn.attr('title', 'running');
+				} else{
+					$btn.attr('class', 'btn btn-warning');
+					$btn.attr('title', 'error');
+				}
+				callback(err);
 			}
 		);
 	});

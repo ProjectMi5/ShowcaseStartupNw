@@ -63,8 +63,8 @@
 				<!-- Section 1 -->
 				<div class="row" id="VMs">
 						<h2>Automated Startup</h2>
-						<button class="btn btn-primary" title="Start test." data-loading-text="Starting..." type="button" id="startTest">
-							Start some test.
+						<button class="btn btn-primary" title="Start test." data-loading-text="Starting..." type="button" id="completeStartup">
+							Complete StartUP!
 						</button>
 						<!-- <div class="console" id="console"></div> -->
 				</div>
@@ -112,7 +112,7 @@
                 <div class="row" id="ProcessTool">
 						<h2>Process Tool</h2>
 						<div class="checkbox">
-							<label><input type="checkbox" value="false" id="init">Starting with initialization?</label>
+							<label><input type="checkbox" id="ProcessToolWithInit" checked />Starting with initialization?</label>
 						</div>
 						<div><button class="btn btn-primary" title="Start Industrial Physics." data-loading-text="Running..." type="button" id="startProcessTool">
 							Start Process Tool!
@@ -131,7 +131,6 @@
     <script>
 	$("#menu-toggle").click(function(e) {
         e.preventDefault();
-		console.log('click');
         $("#wrapper").toggleClass("toggled");
 	});
     </script>

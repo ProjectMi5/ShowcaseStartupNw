@@ -32,29 +32,26 @@ exports.startHMI = function(){
 	});
 };
 
-exports.startBrowser = function(){
+exports.startBrowser = function(callback){
 	var $btn = global.$('#startBrowser');
 	$btn.button('loading');
-	$btn.attr('class', 'btn btn-success');
-	
 	var exec = require('child_process').execFile;
-
 	console.log("Starting HMI in Browser");
 	
 	var exec = require('child_process').exec;
 	var child = exec(process.cwd() + '\\config\\startBrowser.cmd', function(error, stdout, stderr) {
 		$btn.button('reset');
-		console.log("stdout: " + stdout);
-		console.log('Browser closed');
 				
 		if(!error){
+			console.log("stdout: " + stdout);
 			$btn.attr('class', 'btn btn-default');
-			$btn.attr('title', 'closed');
+			$btn.attr('title', 'running');
 		} else {
 			console.log("stderr: "+stderr);
 			$btn.attr('class', 'btn btn-warning');
 			$btn.attr('title', 'error');
 		}
+		callback(error);
 	});
 };
 

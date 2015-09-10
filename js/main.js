@@ -38,7 +38,7 @@ function init(){
 		$("body").on('click', "#startAllDefaults", function(e) {
 			e.preventDefault();
 			//var $btn = $(this).button('loading');
-			VMs.startDefaults(function(out, UUID){});
+			VMs.startDefaults(function(err){});
 		});
 		
 		
@@ -53,7 +53,7 @@ function init(){
 		});
 		$("body").on('click', "#startBrowser", function(e) {
 			e.preventDefault();
-			HMI.startBrowser();
+			HMI.startBrowser(function(error){});
 		});
 		
 		/**
@@ -63,7 +63,7 @@ function init(){
 		var UAexpert = require(process.cwd()+"/js/modules/UAexpert");
 		$("body").on('click', "#startUAexpert", function(e) {
 			e.preventDefault();
-			UAexpert.startUAexpert();
+			UAexpert.startUAexpert(function(error){});
 		});
 		
 		/**
@@ -73,7 +73,7 @@ function init(){
 		var indPhys = require(process.cwd()+"/js/modules/industrialPhysics");
 		$("body").on('click', "#startIndPhys", function(e) {
 			e.preventDefault();
-			indPhys.startIndPhys();
+			indPhys.startIndPhys(function(error){});
 		});
 		
 		/**
@@ -85,6 +85,71 @@ function init(){
 			e.preventDefault();
 			processTool.startProcessTool();
 		});
+		
+		/**
+		 * CompleteStartUP!
+		 ********************************************************
+		 */
+		$("body").on('click', "#completeStartup", function(e) {
+			e.preventDefault();
+			completeStartup();
+		});
+		
+		function completeStartup(){
+			var $btn = $('#completeStartup');
+			$btn.button('loading');
+			global.async.series([
+				function(callback){
+					VMs.startDefaults(function(error){
+						callback(error);
+					});
+				},
+				function(callback){
+					HMI.startHMI();
+					setTimeout(function(){
+						callback(null);
+					}, 5000);
+				},
+				function(callback){
+					HMI.startBrowser(function(error){
+						alert('Please Enable XTS, Reset XTS and Reset Skills.');
+						callback(null);
+					});
+				},
+				function(callback){
+					UAexpert.startUAexpert(function(error){
+						if(!error){
+							alert('Please fix the bugs within UA expert.');
+							callback(null);
+						} else {
+							callback(error);
+						}
+					});
+				},
+				function(callback){
+					indPhys.startIndPhys(function(error){
+						callback(error);
+					});
+				},
+				function(callback){
+					processTool.startProcessTool();
+					callback(null);
+				}				
+			],
+			function(err) {
+				$btn.button('reset');
+				if(!err){
+
+					$btn.attr('class', 'btn btn-success');
+					$btn.attr('title', 'running');
+				} else {
+					console.log('An error occurred '+error);
+					$btn.attr('class', 'btn btn-warning');
+					$btn.attr('title', 'error');
+				}
+				
+			});
+		}
 		
 		
 		

@@ -5,7 +5,7 @@
  * @date 2015-09-10
  * 
  */
-exports.startIndPhys = function(callback){
+exports.startIndPhys = function(){
 	var $btn = global.$('#startIndPhys');
 	$btn.button('loading');
 	$btn.attr('class', 'btn btn-success');
@@ -19,13 +19,12 @@ exports.startIndPhys = function(callback){
 		$btn.button('reset');
 		if(!error){
 			console.log("stdout: " + stdout);
-			$btn.attr('class', 'btn btn-success');
+			$btn.attr('class', 'btn btn-primary');
 			$btn.attr('title', 'running');
 		} else {
 			console.log("stderr: "+stderr);
 			$btn.attr('class', 'btn btn-warning');
 			$btn.attr('title', 'error');
 		}
-		callback(error);
 	});
 };

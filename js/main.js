@@ -73,7 +73,7 @@ function init(){
 		var indPhys = require(process.cwd()+"/js/modules/industrialPhysics");
 		$("body").on('click', "#startIndPhys", function(e) {
 			e.preventDefault();
-			indPhys.startIndPhys(function(error){});
+			indPhys.startIndPhys();
 		});
 		
 		/**
@@ -127,14 +127,15 @@ function init(){
 					});
 				},
 				function(callback){
-					indPhys.startIndPhys(function(error){
-						callback(error);
-					});
-				},
-				function(callback){
 					processTool.startProcessTool();
 					callback(null);
-				}				
+				},
+				function(callback){
+					indPhys.startIndPhys();
+					setTimeout(function(){
+						callback(null);
+					}, 5000);
+				},				
 			],
 			function(err) {
 				$btn.button('reset');

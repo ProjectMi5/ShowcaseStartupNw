@@ -134,7 +134,7 @@ function init(){
 					indPhys.startIndPhys();
 					setTimeout(function(){
 						callback(null);
-					}, 5000);
+					}, 15000);
 				},				
 			],
 			function(err) {
@@ -142,7 +142,7 @@ function init(){
 				if(!err){
 
 					$btn.attr('class', 'btn btn-success');
-					$btn.attr('title', 'running');
+					$btn.attr('title', 'Completed');
 				} else {
 					console.log('An error occurred '+err);
 					$btn.attr('class', 'btn btn-warning');

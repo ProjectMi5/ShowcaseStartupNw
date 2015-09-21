@@ -9,13 +9,14 @@
 		"toolbar": true,
 		"width": 800,
 		"height": 700,
-		"always-on-top": false
+		"always-on-top": true
 	  },
 	  "repository" :
 	  { "type" : "git",
 		"url" : "https://github.com/ProjectMi5/ShowcaseStartupNw"
 	  },
 	  "dependencies": {
-		"async": "*"
+		"async": "*",
+		"sweetalert": "*"
 	  }
 	}

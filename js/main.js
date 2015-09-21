@@ -29,7 +29,7 @@ function init(){
 						VMs.startVM($btn.attr('id'), function(result){});
 				// To do: Turn off running machines etc.
 				} else {
-					alert("This functionality has not been implemented, yet.");
+					swal("This functionality has not been implemented, yet.");
 				}
 			});
 		});
@@ -112,14 +112,38 @@ function init(){
 				},
 				function(callback){
 					HMI.startBrowser(function(error){
-						alert('Please Enable XTS, Reset XTS and Reset Skills.');
 						callback(null);
 					});
 				},
 				function(callback){
+					swal({
+					  title: "Your assistance is needed!",
+					  text: "Please Enable XTS, Reset XTS and Reset Skills.",
+					  type: "warning",
+					  showCancelButton: true,
+					  //confirmButtonColor: "green",
+					  confirmButtonText: "Done!",
+					  cancelButtonText: "Cancel.",
+					  closeOnConfirm: true,
+					  closeOnCancel: true
+					},
+					function(isConfirm){
+					  if (isConfirm) {
+						callback(null);
+					  } else {
+						callback(true);
+					  }
+					});
+				},
+				function(callback){
+					indPhys.startIndPhys();
+					setTimeout(function(){
+						callback(null);
+					}, 15000);
+				},	
+				function(callback){
 					UAexpert.startUAexpert(function(error){
 						if(!error){
-							alert('Please fix the bugs within UA expert.');
 							callback(null);
 						} else {
 							callback(error);
@@ -127,15 +151,29 @@ function init(){
 					});
 				},
 				function(callback){
-					processTool.startProcessTool();
-					callback(null);
+					swal({
+					  title: "Please fix the bugs within UA expert.",
+					  text: 'Set Mi5.Module2302.Input:mode from "0" to "1" to "2".',
+					  type: "warning",
+					  showCancelButton: true,
+					  //confirmButtonColor: "green",
+					  confirmButtonText: "Done!",
+					  cancelButtonText: "Cancel."
+					  //closeOnConfirm: true,
+					  //closeOnCancel: true
+					},
+					function(isConfirm){
+					  if (isConfirm) {
+						callback(null);
+					  } else {
+						callback(true);
+					  }
+					});
 				},
 				function(callback){
-					indPhys.startIndPhys();
-					setTimeout(function(){
-						callback(null);
-					}, 15000);
-				},				
+					processTool.startProcessTool();
+					callback(null);
+				}			
 			],
 			function(err) {
 				$btn.button('reset');

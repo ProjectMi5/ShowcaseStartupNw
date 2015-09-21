@@ -11,11 +11,13 @@
 	
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/simple-sidebar.css"/>
+	<link rel="stylesheet" type="text/css" href="../node_modules/sweetalert/dist/sweetalert.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/styles.css"/>
 	
 	<script type="text/javascript" src="../js/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/bootstrap/scrollspy.js"></script>
+	<script type="text/javascript" src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript" src="../js/main.js"></script>
 	<script type="text/javascript">
 		global.window = window;
@@ -43,13 +45,13 @@
 					<a href="#HMI" data-scroll>HMI</a>
 				</li>
 				<li>
+					<a href="#IndPhys" data-scroll>Industrial Physics</a>
+				</li>
+				<li>
 					<a href="#UAexpert" data-scroll>UA Expert</a>
 				</li>
 				<li>
 					<a href="#ProcessTool" data-scroll>Process Tool</a>
-				</li>
-				<li>
-					<a href="#IndPhys" data-scroll>Industrial Physics</a>
 				</li>
 				<li>
 					<a href="#Help" data-scroll>Help?</a>
@@ -93,8 +95,15 @@
 						</button></div>
                 </div>
 				
-				
 				<!-- Section 4 -->				
+                <div class="row" id="IndPhys">
+						<h2>Industrial Physics</h2>
+						<div><button class="btn btn-primary" title="Start Industrial Physics." data-loading-text="Running..." type="button" id="startIndPhys">
+							Start Industrial Physics!
+						</button></div>
+                </div>	
+				
+				<!-- Section 5 -->				
                 <div class="row" id="UAexpert">
 						<h2>UA Expert</h2>
 						<div><button class="btn btn-primary" title="Start UA Expert." data-loading-text="Running..." type="button" id="startUAexpert">
@@ -102,7 +111,7 @@
 						</button></div>
                 </div>
 				
-				<!-- Section 5 -->				
+				<!-- Section 6 -->				
                 <div class="row" id="ProcessTool">
 						<h2>Process Tool</h2>
 						<div class="checkbox">
@@ -111,15 +120,7 @@
 						<div><button class="btn btn-primary" title="Start Industrial Physics." data-loading-text="Running..." type="button" id="startProcessTool">
 							Start Process Tool!
 						</button></div>
-                </div>
-				
-				<!-- Section 6 -->				
-                <div class="row" id="IndPhys">
-						<h2>Industrial Physics</h2>
-						<div><button class="btn btn-primary" title="Start Industrial Physics." data-loading-text="Running..." type="button" id="startIndPhys">
-							Start Industrial Physics!
-						</button></div>
-                </div>				
+                </div>			
 
             </div>
 			<p class="stats"></p>

@@ -214,12 +214,12 @@ exports.startDefaults = function(callback){
 			function(item, check){				 //asynchronous function controlled by check
 				if(ids.indexOf(item.UUID) > -1){
 					exports.checkState(item.UUID, function(state){
-						if((state=='poweroff')|(state=='saved')){
+						if((state=='poweroff')|(state=='saved')|(state=='aborted')){
 							startVM(item.UUID, function(result){
 								check(result);
 							});
 						} else {
-							console.log(item.vmname+" is already running.");
+							console.log(item.vmname+" is ");
 							check(null);
 						}
 					});

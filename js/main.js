@@ -117,7 +117,7 @@ function init(){
 				},
 				function(callback){
 					swal({
-					  title: "Your assistance is needed!",
+					  title: "Please assist!",
 					  text: "Please Enable XTS, Reset XTS and Reset Skills.",
 					  type: "warning",
 					  showCancelButton: true,

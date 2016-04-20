@@ -4,17 +4,12 @@ This app helps to start several programs of our Showcase. It is based on [nw.js]
 
 ## Getting Started
 
-First, download and install [nw.js](http://nwjs.io/downloads/). If necessary, add nw to your `$PATH`.
+* First, download and install [nw.js](http://nwjs.io/downloads/). If necessary, add nw to your `$PATH`.
 
-Then run
+* In the folder of this README file, run
+ ```npm install```
 
-```npm install```
+* Edit and rename the files within the `./config` folder. You need to delete the word 'sample' in each name.
 
-in the folder of this file.
-
-Now you can run
-
-```nw .```
-
-at the same place and start this app.
+* Now you are ready to run this app with ```nw .``` at the place of the `package.json` file.
 

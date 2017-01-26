@@ -33,28 +33,34 @@
         <div id="sidebar-wrapper">
 			<ul class="sidebar-nav nav" id="spy">
 				<li class="sidebar-brand">
-					<a id="headline" href="#">Menu</a>
+					<a id="headline" href="#">Help Pages</a>
 				</li>
 				<li>
-					<a href="#Complete" data-scroll>Automated Startup</a>
+					<a target="_blank" href="https://alpha.itq.de/projects/mi5-sampleproject/wiki/Startup-RealDemonstrator" data-scroll>Help?</a>
 				</li>
 				<li>
-					<a href="#VMs" data-scroll>VMs</a>
+					<a href="https://alpha.itq.de/projects/mi5-sampleproject/wiki/Virtual_Machines" target="_blank">VMs</a>
 				</li>
 				<li>
-					<a href="#HMI" data-scroll>HMI</a>
+					<a href="https://alpha.itq.de/projects/mi5-sampleproject/wiki/HMI" target="_blank">HMI</a>
 				</li>
 				<li>
-					<a href="#IndPhys" data-scroll>Industrial Physics</a>
+					<a href="https://alpha.itq.de/projects/mi5-sampleproject/wiki/XTS" target="_blank">XTS</a>
 				</li>
 				<li>
-					<a href="#UAexpert" data-scroll>UA Expert</a>
+					<a href="https://alpha.itq.de/projects/mi5-sampleproject/wiki/Industrial_Physics" target="_blank">Industrial Physics</a>
 				</li>
 				<li>
-					<a href="#ProcessTool" data-scroll>Process Tool</a>
+					<a href="https://alpha.itq.de/projects/mi5-sampleproject/wiki/UA_Expert" target="_blank">UA Expert</a>
 				</li>
 				<li>
-					<a href="#Help" data-scroll>Help?</a>
+					<a href="https://alpha.itq.de/projects/mi5-sampleproject/wiki/Process_Tool" target="_blank">Process Tool</a>
+				</li>
+				<li>
+					<a href="https://alpha.itq.de/projects/mi5-sampleproject/wiki/Startup-RealDemonstrator#section-4" target="_blank">Troubleshooting on Runtime</a>
+				</li>
+				<li>
+					<a href="https://alpha.itq.de/projects/mi5-sampleproject/wiki/Startup-RealDemonstrator#section-5" target="_blank">Shutdown</a>
 				</li>
 			</ul>
         </div>
@@ -62,14 +68,17 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-			<div class="container-fluid"><button title="Menu" href="#menu-toggle" class="btn btn-primary" id="menu-toggle">Menu <span id="main_icon" class="glyphicon glyphicon-align-justify"></span></button></div>		
-			
+			<div class="container-fluid"><button title="Menu" href="#menu-toggle" class="btn btn-primary" id="menu-toggle"><span id="main_icon" class="glyphicon glyphicon-align-justify"></span> Help Pages</button></div>		
+			<div class="text-right"><button class="btn" id="refresh"><span class="glyphicon glyphicon-refresh"></span> Refresh</button></div>
             <div class="container-fluid" data-spy="scroll" data-target="#spy">
 				<!-- Section 1 -->
 				<div class="row" id="Complete">
 						<h2>Automated Startup</h2>
 						<button class="btn btn-primary" title="Start test." data-loading-text="Starting..." type="button" id="completeStartup">
 							Complete StartUP!
+						</button>
+						<button class="btn btn-default hidden" title="Interrupt startup." data-loading-text="Starting..." type="button" id="interruptStartup">
+							Interrupt Startup.
 						</button>
 						<!-- <div class="console" id="console"></div> -->
 				</div>
@@ -92,6 +101,28 @@
 						</button>
 						<button class="btn btn-default" title="Start the Browser." data-loading-text="Running..." type="button" id="startBrowser">
 							View HMI in Browser!
+						</button></div>
+                </div>
+				
+				<!-- Section 3.5 -->				
+                <div class="row" id="XTS">
+						<h2>XTS</h2>
+						<h5><span id="xtsConnectionSpinner" class="glyphicon glyphicon-refresh glyphicon-spin"></span> <span id="xtsConnectionIndicator" class="label label-default">connecting</span> <span id="xtsEnableIndicator" class="label label-default">disabled</span></h5>
+						<h5><button class="btn btn-primary" title="Enable XTS." data-loading-text="XTS Enabled." type="button" id="enableXTS">
+							Enable XTS.
+						</button>
+						<button class="btn btn-default hidden" title="Disable XTS." data-loading-text="XTS Disabled..." type="button" id="disableXTS">
+							Disable XTS.
+						</button></h5>
+						<div>
+						<button class="btn" title="Restart XTS." data-loading-text="Running..." type="button" id="restartXTS">
+							Restart XTS.
+						</button>
+						<button class="btn" title="Reset XTS Skills." data-loading-text="Running..." type="button" id="resetSkills">
+							Reset Skills.
+						</button>
+						<button class="btn" title="Activate Warmup." data-loading-text="Warmup..." type="button" id="XTSwarmup">
+							Activate warmup.
 						</button></div>
                 </div>
 				

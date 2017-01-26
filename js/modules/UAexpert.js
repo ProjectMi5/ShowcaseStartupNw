@@ -5,15 +5,16 @@
  * @date 2015-09-10
  * 
  */
+ 
+ 
+ 
 exports.startUAexpert = function(callback){
 	var $btn = global.$('#startUAexpert');
 	$btn.button('loading');
 	
-	var exec = require('child_process').execFile;
+	var exec = require('child_process').exec;
 
 	console.log("Starting UA Expert");
-	
-	var exec = require('child_process').execFile;
 	exec(process.cwd() + '\\config\\startUAexpert.cmd', function(error, stdout, stderr) {
 		$btn.button('reset');
 		if(!error){

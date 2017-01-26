@@ -1,22 +1,24 @@
-	{
-	  "name": "Mi5-startup-nw-app",
-	  "version": "0.0.1",
-	  "author": "Dominik Serve",
-	  "description": "",
-	  "main": "./html/index.html",
-	  "single-instance": false,
-	  "window": {
-		"toolbar": true,
-		"width": 800,
-		"height": 700,
-		"always-on-top": true
-	  },
-	  "repository" :
-	  { "type" : "git",
-		"url" : "https://github.com/ProjectMi5/ShowcaseStartupNw"
-	  },
-	  "dependencies": {
-		"async": "*",
-		"sweetalert": "*"
-	  }
-	}
+{
+  "name": "Mi5-startup-nw-app",
+  "version": "0.0.1",
+  "author": "Dominik Serve",
+  "description": "",
+  "main": "./html/index.html",
+  "single-instance": false,
+  "window": {
+    "toolbar": true,
+    "width": 800,
+    "height": 700,
+    "always-on-top": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ProjectMi5/ShowcaseStartupNw"
+  },
+  "dependencies": {
+    "async": "*",
+    "mi5-simple-opcua": "git+https://github.com/ProjectMi5/mi5-simple-opcua.git",
+    "ps-node": "^0.1.4",
+    "sweetalert": "*"
+  }
+}
